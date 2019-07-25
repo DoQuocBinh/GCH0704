@@ -1,0 +1,8 @@
+create TABLE RegisterCourse(
+    id int AUTO_INCREMENT PRIMARY key,
+    studentname varchar(50),
+    course varchar(50),
+    dob date,
+    gender varchar(10),
+    fav varchar(50)
+)
