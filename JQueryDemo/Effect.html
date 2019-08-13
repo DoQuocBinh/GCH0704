@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo effect</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+	<script type="text/javascript">
+		$(document).ready(function($) {
+			$("#btnRun").click(function(event) {
+				// lay gia tri cua select box
+				var effect = $("#effectType").val();
+				$("#myInfo").effect(effect,{},3000,callback)
+			});
+			$( "#dialog" ).dialog({
+				autoOpen: false,
+				show: {
+					effect: "blind",
+					duration: 1000
+				},
+				hide: {
+					effect: "explode",
+					duration: 1000
+				}
+			});
+		});
+		
+		function callback(){
+			$( "#dialog" ).dialog( "open" );
+		}
+	</script>
+</head>
+<body>
+	<div id="myInfo">
+		<h1>Hello </h1>
+		<p>bla blu laold laure ldof8s lsjdlsjf  dfsfsf</p>
+		<p>bla blu laold laure ldof8s lsjdlsjf  dfsfsf</p>
+	</div>
+	<select id="effectType">
+		<option value="blind">blind</option>
+		<option value="bounce">bounce</option>
+		<option value="clip">clip</option>
+		<option value="drop">drop</option>
+		<option value="explode">explode</option>
+	</select>
+	<div id="dialog" title="Xin chao">
+		<p>Thank you</p>
+	</div>
+	<input type="button" value="Run effect" id="btnRun">
+</body>
+</html>
