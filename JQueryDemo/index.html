@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- tham chieu den thu vien JQuery -->
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//alert("Trang web da load xong");
+			//dang ky su kien button click
+			$("#btnOk").click(function(event) {
+				//alert("ban vua bam Ok!");
+				//lay gia tri cua Textbox
+				var name = $("#txtName").val();
+				alert("Hi " + name);
+				$("#txtName").css('display', 'none');
+
+			});
+		});
+	</script>
+</head>
+<body>
+	<form>
+		<input type="text" name="" id="txtName">
+		<input type="button" value="Ok" id="btnOk">
+		<input type="button" value="Ok2" id="btnOk2">
+	</form>
+</body>
+</html>
