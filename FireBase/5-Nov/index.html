@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script  src="/__/firebase/7.2.3/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script  src="/__/firebase/7.2.3/firebase-auth.js"></script>
+    <script  src="/__/firebase/7.2.3/firebase-database.js"></script>
+    <script  src="/__/firebase/7.2.3/firebase-messaging.js"></script>
+    <script  src="/__/firebase/7.2.3/firebase-storage.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script  src="/__/firebase/init.js"></script>
+  </head>
+  <body>
+  	<input type="text"  id="fact">
+  	<input type="button" value="Add Fact" onclick="addFact()">
+    <ul id="listFacts">
+      
+    </ul>
+    <script>
+    	var dbRef = firebase.database().ref();
+      function readDatabase(){
+         dbRef.child('Facts').on('value',snap=>{
+          //clear all Items in the list
+          $('#listFacts').empty();
+           snap.forEach(snapChild=>{
+              var id = snapChild.id;
+              var fact = snapChild.child('fact').val();
+              addItemToList(id,fact);
+           })
+         })
+      }
+      function addItemToList(id,fact){
+        var listItem = '<li>' + fact + '</li>';
+        $('#listFacts').append(listItem);
+      }
+      readDatabase();
+  		function addFact() {
+  			var factValue = $('#fact').val();
+  			var newFact = dbRef.child('/Facts').push();
+  			newFact.set({
+  				fact : factValue
+  			})
+  			alert('Insert done!');
+  		}
+
+    </script>
+  </body>
+</html>
